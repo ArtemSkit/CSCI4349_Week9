@@ -47,7 +47,7 @@ gcloud init
 - Created a firewall rule to allow trafic on ports 3000 and 10000<br />  
 <img src="./img/firewall_rule.PNG" />
 <img src="./img/firewall_rule1.PNG" /><br />  
-- Crate admin server and ssh into it<br />  
+* Create admin server and ssh into it<br />  
 <img src="./img/create_admin_server_from_shell.PNG" />
 <img src="./img/ssh_to_admin_server.PNG" /><br />  
 My ssh key setup:
