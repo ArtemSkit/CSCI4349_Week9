@@ -43,7 +43,7 @@ curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
 sudo apt-get update && sudo apt-get install google-cloud-sdk
 gcloud init
 ```
-- After running ```gcloud init``` select defalut region and zone to be ```us-central1``` and ```us-central1-c```
+- After running ```gcloud init``` select defalut region and zone to be ```us-central1``` and ```us-central1-c```<br />
 - Created a firewall rule to allow trafic on ports 3000 and 10000<br />  
 <img src="./img/firewall_rule.PNG" />
 <img src="./img/firewall_rule1.PNG" /><br />
@@ -59,7 +59,7 @@ My ssh key setup:
     Organizational Unit Name (eg, section) []:art
     Common Name (e.g. server FQDN or YOUR name) []:35.202.171.224
     Email Address []:bigbossofgarena@gmail.com
-    ```
+    ```<br />
 - Make mhn-admin VM ip static
 <img src="./img/admin_ip.PNG" /><br />  
 - Run the following commands from the admin VM shell:
