@@ -17,4 +17,6 @@ gcloud init
 - Created a firewall rule to allow trafic on ports 3000 and 10000
 <img src="https://raw.githubusercontent.com/ArtemSkit/CSCI4349_Week9/master/img/firewall_rule.PNG" /><br />
 <img src="https://raw.githubusercontent.com/ArtemSkit/CSCI4349_Week9/master/img/firewall_rule1.PNG" /><br />
-```bash
+- Crate admin server and ssh into it
+<img src="./img/create_admin_server_from_shell.PNG" /><br />
+<img src="./img/ssh_to_admin_server.PNG" /><br />
