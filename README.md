@@ -15,6 +15,6 @@ gcloud init
 ```
 - Afre running ```gcloud init``` select defalut region and zone to be ```us-central1``` and ```us-central1-c```
 - Created a firewall rule to allow trafic on ports 3000 and 10000
-<img src="./img/firewall_rule.png" /><br />
-<img src="./img/firewall_rule1.png" /><br />
+<img src="https://raw.githubusercontent.com/ArtemSkit/CSCI4349_Week9/master/img/firewall_rule.PNG" /><br />
+<img src="https://raw.githubusercontent.com/ArtemSkit/CSCI4349_Week9/master/img/firewall_rule1.PNG" /><br />
 ```bash
