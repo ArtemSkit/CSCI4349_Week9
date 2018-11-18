@@ -46,20 +46,18 @@ gcloud init
 - After running ```gcloud init``` select defalut region and zone to be ```us-central1``` and ```us-central1-c```<br />
 - Created a firewall rule to allow trafic on ports 3000 and 10000<br />  
 <img src="./img/firewall_rule.PNG" />
-<img src="./img/firewall_rule1.PNG" /><br />
+<img src="./img/firewall_rule1.PNG" />
 - Create admin server and ssh into it<br />  
 <img src="./img/create_admin_server_from_shell.PNG" />
 <img src="./img/ssh_to_admin_server.PNG" /><br />  
-My ssh key setup:
-    ```
-    Country Name (2 letter code) [AU]:US
+My ssh key setup:<br />
+    ```Country Name (2 letter code) [AU]:US
     State or Province Name (full name) [Some-State]:Texas
     Locality Name (eg, city) []:San Antonio
     Organization Name (eg, company) [Internet Widgits Pty Ltd]:week9
     Organizational Unit Name (eg, section) []:art
     Common Name (e.g. server FQDN or YOUR name) []:35.202.171.224
-    Email Address []:bigbossofgarena@gmail.com
-    ```<br />
+    Email Address []:bigbossofgarena@gmail.com```<br />
 - Make mhn-admin VM ip static
 <img src="./img/admin_ip.PNG" /><br />  
 - Run the following commands from the admin VM shell:
