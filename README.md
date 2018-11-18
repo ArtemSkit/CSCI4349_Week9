@@ -46,8 +46,7 @@ gcloud init
 - After running ```gcloud init``` select defalut region and zone to be ```us-central1``` and ```us-central1-c```
 - Created a firewall rule to allow trafic on ports 3000 and 10000<br />  
 <img src="./img/firewall_rule.PNG" />
-<img src="./img/firewall_rule1.PNG" /><br />  
-
+<img src="./img/firewall_rule1.PNG" /><br />
 - Create admin server and ssh into it<br />  
 <img src="./img/create_admin_server_from_shell.PNG" />
 <img src="./img/ssh_to_admin_server.PNG" /><br />  
