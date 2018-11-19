@@ -19,7 +19,8 @@ I run the following script in the honepot VMs:
 After running mhn-honeypot-3 instance for about 15 hours, I found out that I can no longer ssh into the VM.<br />  
 <img src="./img/ssh.PNG" /><br />  
 Most likely the instance was compromised.<br />
-At the time of writing the report the number of attacks is: 15,656.
+At the time of writing the report the number of attacks is: 15,656.<br />
+<b>Export of the data collected from honeypots: <a href="./logs/session.json">session.json</a></b>
 
 ## Reproducible honeypot setup
 ### Requirements
@@ -149,8 +150,145 @@ sudo sqlite3 -column -header logsql.sqlite
 SELECT * FROM logins;
 ```
 ### Demonstration 
-#### Additional attack demos/writeups
+Tools used for the attack: ZenMap, Sqlmap, OWASP ZAP.<br />  
+![GIF Attack](./img/attack.gif)
+ZenMap results:
+```text
+Nmap scan report for 135.196.239.35.bc.googleusercontent.com (35.239.196.135)
+Host is up (0.048s latency).
+Not shown: 988 closed ports
+PORT     STATE    SERVICE      VERSION
+21/tcp   open     ftp          Dionaea honeypot ftpd
+|_ftp-anon: ERROR: Script execution failed (use -d to debug)
+22/tcp   open     ssh          OpenSSH 6.6.1p1 Ubuntu 2ubuntu2.8 (Ubuntu Linux; protocol 2.0)
+| ssh-hostkey: 
+|   1024 78:e5:8a:bb:5e:55:dc:aa:66:37:c6:90:81:6f:df:f0 (DSA)
+|   2048 14:79:82:7e:5a:26:e2:07:99:00:a0:3c:4d:fb:51:c3 (RSA)
+|   256 e7:87:d5:0e:fd:c8:33:0d:32:d1:15:87:35:c2:4b:58 (ECDSA)
+|_  256 90:2d:bb:2f:6b:98:03:5f:fe:e6:8f:00:4f:a0:4e:c9 (EdDSA)
+42/tcp   open     nameserver?
+80/tcp   open     honeypot     Dionaea Honeypot httpd
+| http-methods: 
+|_  Supported Methods: OPTIONS GET HEAD POST
+|_http-title: Site doesn't have a title.
+135/tcp  open     msrpc?
+443/tcp  open     ssl/honeypot Dionaea Honeypot httpd
+| http-methods: 
+|_  Supported Methods: OPTIONS GET HEAD POST
+|_http-title: Site doesn't have a title.
+| ssl-cert: Subject: commonName=Nepenthes Development Team/organizationName=dionaea.carnivore.it/countryName=DE
+| Issuer: commonName=Nepenthes Development Team/organizationName=dionaea.carnivore.it/countryName=DE
+| Public Key type: rsa
+| Public Key bits: 2048
+| Signature Algorithm: md5WithRSAEncryption
+| Not valid before: 2018-11-18T07:33:17
+| Not valid after:  2019-11-18T07:33:17
+| MD5:   60be a4eb 098b d952 0f04 ab84 ad46 d7dc
+|_SHA-1: 8975 66e2 0e0e 5e26 6e5e 696a b784 b574 9495 185c
+|_ssl-date: TLS randomness does not represent time
+445/tcp  open     microsoft-ds Windows XP microsoft-ds
+514/tcp  filtered shell
+1433/tcp open     ms-sql-s     Microsoft SQL Server 2000 8.00.528.00; SP1+
+3306/tcp open     mysql        MySQL 5.0.54
+| mysql-info: 
+|   Protocol: 10
+|   Version: 5.0.54
+|   Thread ID: 1729232896
+|   Capabilities flags: 41516
+|   Some Capabilities: SupportsCompression, ConnectWithDatabase, SupportsTransactions, LongColumnFlag, Support41Auth, Speaks41ProtocolNew
+|   Status: Autocommit
+|_  Salt: aaaaaaaa            
+5060/tcp open     sip          (SIP end point; Status: 200 OK)
+| fingerprint-strings: 
+|   SIPOptions: 
+|     SIP/2.0 200 OK
+|     Allow: REGISTER, OPTIONS, INVITE, CANCEL, BYE, ACK
+|     Accept: application/sdp
+|     CSeq: 42 OPTIONS
+|     Call-ID: 50000
+|     sip:nm2@nm2
+|     Accept-Language: en
+|     Via: SIP/2.0/TCP nm;branch=foo
+|     From: sip:nm@nm;tag=root
+|     Contact: sip:nm2@nm2
+|_    Content-Length: 0
+|_sip-methods: REGISTER, OPTIONS, INVITE, CANCEL, BYE, ACK
+5061/tcp open     ssl/sip      (SIP end point; Status: 200 OK)
+| fingerprint-strings: 
+|   SIPOptions: 
+|     SIP/2.0 200 OK
+|     Allow: REGISTER, OPTIONS, INVITE, CANCEL, BYE, ACK
+|     Accept: application/sdp
+|     CSeq: 42 OPTIONS
+|     Call-ID: 50000
+|     sip:nm2@nm2
+|     Accept-Language: en
+|     Via: SIP/2.0/TCP nm;branch=foo
+|     From: sip:nm@nm;tag=root
+|     Contact: sip:nm2@nm2
+|_    Content-Length: 0
+| ssl-cert: Subject: commonName=Nepenthes Development Team/organizationName=dionaea.carnivore.it/countryName=DE
+| Issuer: commonName=Nepenthes Development Team/organizationName=dionaea.carnivore.it/countryName=DE
+| Public Key type: rsa
+| Public Key bits: 2048
+| Signature Algorithm: md5WithRSAEncryption
+| Not valid before: 2018-11-18T07:33:17
+| Not valid after:  2019-11-18T07:33:17
+| MD5:   f31d ae94 9b89 835c 65c2 5d57 ce0b 6e8f
+|_SHA-1: 1461 4d51 0768 8c5c 4840 4fc2 29f0 f88e 918a fd58
+|_ssl-date: TLS randomness does not represent time
+2 services unrecognized despite returning data. If you know the service/version, please submit the following fingerprints at https://nmap.org/cgi-bin/submit.cgi?new-service :
+==============NEXT SERVICE FINGERPRINT (SUBMIT INDIVIDUALLY)==============
+SF-Port5060-TCP:V=7.60%I=7%D=11/18%Time=5BF228B9%P=x86_64-pc-linux-gnu%r(S
+SF:IPOptions,10A,"SIP/2\.0\x20200\x20OK\r\nAllow:\x20REGISTER,\x20OPTIONS,
+SF:\x20INVITE,\x20CANCEL,\x20BYE,\x20ACK\r\nAccept:\x20application/sdp\r\n
+SF:CSeq:\x2042\x20OPTIONS\r\nCall-ID:\x2050000\r\nTo:\x20sip:nm2@nm2\r\nAc
+SF:cept-Language:\x20en\r\nVia:\x20SIP/2\.0/TCP\x20nm;branch=foo\r\nFrom:\
+SF:x20sip:nm@nm;tag=root\r\nContact:\x20sip:nm2@nm2\r\nContent-Length:\x20
+SF:0\r\n\r\n");
+==============NEXT SERVICE FINGERPRINT (SUBMIT INDIVIDUALLY)==============
+SF-Port5061-TCP:V=7.60%T=SSL%I=7%D=11/18%Time=5BF228C0%P=x86_64-pc-linux-g
+SF:nu%r(SIPOptions,10A,"SIP/2\.0\x20200\x20OK\r\nAllow:\x20REGISTER,\x20OP
+SF:TIONS,\x20INVITE,\x20CANCEL,\x20BYE,\x20ACK\r\nAccept:\x20application/s
+SF:dp\r\nCSeq:\x2042\x20OPTIONS\r\nCall-ID:\x2050000\r\nTo:\x20sip:nm2@nm2
+SF:\r\nAccept-Language:\x20en\r\nVia:\x20SIP/2\.0/TCP\x20nm;branch=foo\r\n
+SF:From:\x20sip:nm@nm;tag=root\r\nContact:\x20sip:nm2@nm2\r\nContent-Lengt
+SF:h:\x200\r\n\r\n");
+Aggressive OS guesses: Actiontec MI424WR-GEN3I WAP (99%), DD-WRT v24-sp2 (Linux 2.4.37) (97%), Linux 3.2 (97%), Microsoft Windows XP SP3 or Windows 7 or Windows Server 2012 (96%), Linux 4.4 (96%), Microsoft Windows XP SP3 (96%), BlueArc Titan 2100 NAS device (91%)
+No exact OS matches for host (test conditions non-ideal).
+Network Distance: 2 hops
+TCP Sequence Prediction: Difficulty=256 (Good luck!)
+IP ID Sequence Generation: Incremental
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+Host script results:
+|_clock-skew: mean: -19h35m56s, deviation: 0s, median: -19h35m56s
+| ms-sql-info: 
+|   35.239.196.135:1433: 
+|     Version: 
+|       name: Microsoft SQL Server 2000 SP1+
+|       number: 8.00.528.00
+|       Product: Microsoft SQL Server 2000
+|       Service pack level: SP1
+|       Post-SP patches applied: true
+|_    TCP port: 1433
+| smb-os-discovery: 
+|   OS: Windows XP (Windows 2000 LAN Manager)
+|   OS CPE: cpe:/o:microsoft:windows_xp::-
+|   NetBIOS computer name: HOMEUSER-3AF6FE\x00
+|   Workgroup: WORKGROUP\x00
+|_  System time: 2018-11-18T08:33:17+01:00
+| smb-security-mode: 
+|   account_used: guest
+|   authentication_level: user
+|   challenge_response: supported
+|_  message_signing: disabled (dangerous, but default)
+|_smb2-time: Protocol negotiation failed (SMB2)
+```
+The rest of the tools did not give any useful results. For example, Sqlmap wasn't able to continue scanning because the page returned 404 code, OWASP ZAP scan yielded only a few warnings about XSS Protection Not Enabled on robots.txt and sitemap.xml files and missing X-Content-Type-Options and Content-Type headers, no critical vulnerabilities were found.
 #### Captured malicious payload
-Here are the samples of bisteream payloads uploaded to mhn-honepot-1 that run Ubuntu - Dionaea with HTTP script: <a href="./dionea-payloads/Dionaea-payloads.tar.gz">Dionaea-payloads.tar.gz</a>
-<img src="./img/bistreams.PNG" /><br />  
+Here are the samples of bisteream payloads uploaded to mhn-honepot-1 that run Ubuntu - Dionaea with HTTP script: <a href="./dionea-payloads/Dionaea-payloads.tar.gz">Dionaea-payloads.tar.gz</a><br />  
+Stored payloads: <img src="./img/bistreams.PNG" /><br />  
+Snort alerts: <img src="./img/snort_alerts.PNG" /><br />  
+Suricata events: <img src="./img/suricata_events.PNG" /><br />  
 #### Enhanced logging of exploit post-exploit activity (example: attacker-initiated commands captured and logged)
