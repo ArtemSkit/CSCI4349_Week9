@@ -39,8 +39,6 @@ At the time of writing the report the number of attacks is: 15,656.<br />
 ### Setup script
 There are three scripts that you would run to automate the setup:
 - Run this script from your desctop with linux OS: <a href="./scripts/mhnUserMachine.sh">shell script</a>
-- Run this script from mhn-admin VM terminal: <a href="./scripts/mhnAdmin.sh">shell script</a>
-- Run this script from mhn-honeypot VM terminal: <a href="./scripts/mhnHonepot.sh">shell script</a>
 ### Steps to setup
 - On the Ubuntu 14.04 installed Google Cloud SDK and connected to my account:  
 ```bash
