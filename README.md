@@ -291,4 +291,3 @@ Here are the samples of bisteream payloads uploaded to mhn-honepot-1 that run Ub
 Stored payloads: <img src="./img/bistreams.PNG" /><br />  
 Snort alerts: <img src="./img/snort_alerts.PNG" /><br />  
 Suricata events: <img src="./img/suricata_events.PNG" /><br />  
-#### Enhanced logging of exploit post-exploit activity (example: attacker-initiated commands captured and logged)
