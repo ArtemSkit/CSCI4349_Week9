@@ -82,7 +82,7 @@ Email Address []:bigbossofgarena@gmail.com
     $ sudo ./install.sh
     ```
 - Create honepot VM and ssh into it<br />  
-<img src="./img/create_honeypot_server_from_shell.PNG" />
+<img src="./img/create_honeypot_server_from_shell.PNG" /><br />  
 <img src="./img/ssh_to_honeypot.PNG" /><br />  
 - In the admin server web interface click deploy
 - Select script
