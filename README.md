@@ -1,4 +1,4 @@
-# Project 9 - Createing Honeypots
+# Project 9 - Creating Honeypots
 
 Time spent: **27** hours spent in total
 
@@ -18,7 +18,8 @@ I run the following script in the honepot VMs:
 
 After running mhn-honeypot-3 instance for about 15 hours, I found out that I can no longer ssh into the VM.<br />  
 <img src="./img/ssh.PNG" /><br />  
-Most likely the instance was compromised.
+Most likely the instance was compromised.<br />
+At the time of writing the number of attacks is: 15,656.
 
 ## Reproducible honeypot setup
 ### Requirements
