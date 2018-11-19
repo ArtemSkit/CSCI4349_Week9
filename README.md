@@ -86,6 +86,6 @@ Email Address []:bigbossofgarena@gmail.com
 <img src="./img/ssh_to_honeypot.PNG" /><br />  
 - In the admin server web interface click deploy
 - Select script
-<img src="./img/honeypot_script.PNG" />
+<img src="./img/honeypot_script.PNG" /><br />  
 - Copy the command and run it in the honepot instance shell
 - After some time you will have some traffic logs display in the admin server web interface Attacks tab
