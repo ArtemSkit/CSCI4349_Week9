@@ -19,7 +19,7 @@ I run the following script in the honepot VMs:
 After running mhn-honeypot-3 instance for about 15 hours, I found out that I can no longer ssh into the VM.<br />  
 <img src="./img/ssh.PNG" /><br />  
 Most likely the instance was compromised.<br />
-At the time of writing the report the number of attacks is: 15,656.<br />
+At the time of writing the report the number of attacks is: <b>24,168</b>.<br />
 <b>Export of the data collected from honeypots: <a href="./logs/session.json">session.json</a></b>
 
 ## Reproducible honeypot setup
