@@ -19,7 +19,7 @@ I run the following script in the honepot VMs:
 After running mhn-honeypot-3 instance for about 15 hours, I found out that I can no longer ssh into the VM.<br />  
 <img src="./img/ssh.PNG" /><br />  
 Most likely the instance was compromised.<br />
-At the time of writing the number of attacks is: 15,656.
+At the time of writing the report the number of attacks is: 15,656.
 
 ## Reproducible honeypot setup
 ### Requirements
@@ -99,7 +99,7 @@ cd /etc/nginx/sites-available
 sudo nano default
 ```
 - Edit the file default to look like this and save the changes
-```json
+```text
 server {
     listen       443 ssl;
     server_name  _;
@@ -138,7 +138,19 @@ Common Name (e.g. server FQDN or YOUR name) []:35.202.171.224
 Email Address []:bigbossofgarena@gmail.com
 ```
 #### Database back-end
+Here are the contents of the database of mhn-honepot-1 that run Ubuntu - Dionaea with HTTP script: <a href="./SQLite/logsql.sqlite">logsql.sqlite</a>
+<img src="./img/login_SQLite.PNG" /><br />  
+To see the contents of the file run the following commands:
+```bash
+sudo apt-get install sqlite
+sudo sqlite3 -column -header logsql.sqlite
+.open "./SQLite/logsql.sqlite";
+.tables
+SELECT * FROM logins;
+```
 ### Demonstration 
 #### Additional attack demos/writeups
 #### Captured malicious payload
+Here are the samples of bisteream payloads uploaded to mhn-honepot-1 that run Ubuntu - Dionaea with HTTP script: <a href="./dionea-payloads/Dionaea-payloads.tar.gz">Dionaea-payloads.tar.gz</a>
+<img src="./img/bistreams.PNG" /><br />  
 #### Enhanced logging of exploit post-exploit activity (example: attacker-initiated commands captured and logged)
