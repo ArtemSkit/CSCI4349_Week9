@@ -34,7 +34,12 @@ At the time of writing the number of attacks is: 15,656.
 - The server running Modern Honey Network provides information about scan attemps, their time, IP, and geografical location.<br />
 <img src="./img/Attacks.PNG" /><br />  
 - Aditionaly it stores the payloads attempted to be uploaded and run on honeypot servers.
-<img src="./img/Payloads.PNG" /><br />  
+<img src="./img/Payloads.PNG" /><br /> 
+### Setup script
+There are three scripts that you would run to automate the setup:
+- Run this script from your desctop with linux OS: <a href="./scripts/mhnUserMachine.sh">shell script</a>
+- Run this script from mhn-admin VM terminal: <a href="./scripts/mhnAdmin.sh">shell script</a>
+- Run this script from mhn-honeypot VM terminal: <a href="./scripts/mhnHonepot.sh">shell script</a>
 ### Steps to setup
 - On the Ubuntu 14.04 installed Google Cloud SDK and connected to my account:  
 ```bash
@@ -51,16 +56,6 @@ gcloud init
 - Create admin server and ssh into it
 <img src="./img/create_admin_server_from_shell.PNG" /><br />  
 <img src="./img/ssh_to_admin_server.PNG" /><br />  
-My ssh key setup:<br />
-```text
-Country Name (2 letter code) [AU]:US
-State or Province Name (full name) [Some-State]:Texas
-Locality Name (eg, city) []:San Antonio
-Organization Name (eg, company) [Internet Widgits Pty Ltd]:week9
-Organizational Unit Name (eg, section) []:art
-Common Name (e.g. server FQDN or YOUR name) []:35.202.171.224
-Email Address []:bigbossofgarena@gmail.com
-```
 - Make mhn-admin VM ip static
 <img src="./img/admin_ip.PNG" /><br />  
 - Run the following commands from the admin VM shell:
@@ -90,3 +85,60 @@ Email Address []:bigbossofgarena@gmail.com
 <img src="./img/honeypot_script.PNG" /><br />  
 - Copy the command and run it in the honepot instance shell
 - After some time you will have some traffic logs display in the admin server web interface Attacks tab
+
+## Optional: Features
+### Honeypot 
+#### HTTPS enabled
+SSL setup is based on the tutorial https://www.digitalocean.com/community/tutorials/how-to-create-an-ssl-certificate-on-nginx-for-ubuntu-14-04
+```bash
+sudo mkdir /etc/nginx/ssl
+cd nginx/
+cd ssl/
+sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/nginx/ssl/nginx.key -out /etc/nginx/ssl/nginx.crt
+cd /etc/nginx/sites-available
+sudo nano default
+```
+- Edit the file default to look like this and save the changes
+```json
+server {
+    listen       443 ssl;
+    server_name  _;
+    ssl_certificate /etc/nginx/ssl/nginx.crt;
+    ssl_certificate_key /etc/nginx/ssl/nginx.key;
+    location / {
+        try_files $uri @mhnserver;
+    }
+
+    root /opt/www;
+
+    location @mhnserver {
+      include uwsgi_params;
+      uwsgi_pass unix:/tmp/uwsgi.sock;
+    }
+
+    location  /static {
+      alias /opt/mhn/server/mhn/static;
+    }
+}
+```
+- Restart the service
+```bash
+sudo service nginx restart
+```
+- Result:
+<img src="./img/https.PNG" /><br />  
+P.S. My ssh key setup:<br />
+```text
+Country Name (2 letter code) [AU]:US
+State or Province Name (full name) [Some-State]:Texas
+Locality Name (eg, city) []:San Antonio
+Organization Name (eg, company) [Internet Widgits Pty Ltd]:week9
+Organizational Unit Name (eg, section) []:art
+Common Name (e.g. server FQDN or YOUR name) []:35.202.171.224
+Email Address []:bigbossofgarena@gmail.com
+```
+#### Database back-end
+### Demonstration 
+#### Additional attack demos/writeups
+#### Captured malicious payload
+#### Enhanced logging of exploit post-exploit activity (example: attacker-initiated commands captured and logged)
