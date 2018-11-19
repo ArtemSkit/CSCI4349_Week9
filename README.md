@@ -51,15 +51,15 @@ gcloud init
 <img src="./img/create_admin_server_from_shell.PNG" />
 <img src="./img/ssh_to_admin_server.PNG" /><br />  
 My ssh key setup:<br />
-    ```text
-    Country Name (2 letter code) [AU]:US
-    State or Province Name (full name) [Some-State]:Texas
-    Locality Name (eg, city) []:San Antonio
-    Organization Name (eg, company) [Internet Widgits Pty Ltd]:week9
-    Organizational Unit Name (eg, section) []:art
-    Common Name (e.g. server FQDN or YOUR name) []:35.202.171.224
-    Email Address []:bigbossofgarena@gmail.com
-    ```
+```text
+Country Name (2 letter code) [AU]:US
+State or Province Name (full name) [Some-State]:Texas
+Locality Name (eg, city) []:San Antonio
+Organization Name (eg, company) [Internet Widgits Pty Ltd]:week9
+Organizational Unit Name (eg, section) []:art
+Common Name (e.g. server FQDN or YOUR name) []:35.202.171.224
+Email Address []:bigbossofgarena@gmail.com
+```
 - Make mhn-admin VM ip static
 <img src="./img/admin_ip.PNG" /><br />  
 - Run the following commands from the admin VM shell:
