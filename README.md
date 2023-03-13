@@ -135,7 +135,7 @@ Locality Name (eg, city) []:San Antonio
 Organization Name (eg, company) [Internet Widgits Pty Ltd]:week9
 Organizational Unit Name (eg, section) []:art
 Common Name (e.g. server FQDN or YOUR name) []:35.202.171.224
-Email Address []:bigbossofgarena@gmail.com
+Email Address []:(your email)@gmail.com
 ```
 #### Database back-end
 Here are the contents of the database of mhn-honepot-1 that run Ubuntu - Dionaea with HTTP script: <a href="./SQLite/logsql.sqlite">logsql.sqlite</a>
